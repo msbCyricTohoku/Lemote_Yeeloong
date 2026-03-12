@@ -37,7 +37,8 @@ Once you are in fdisk, use the following;
 * `+2G` (Make it a 2GB partition so PMON can read it)
 * `w` (Write changes and exit)
 
-Format the new partition as ext2 (PMON's favorite file system):
+Format the new partition as ext2 (PMON favorite file system):
+
 ```bash
 sudo mkfs.ext2 /dev/sdX1
 ```
@@ -50,14 +51,14 @@ These can be downloaded from: https://archive.debian.org/debian-archive/debian/d
 
 I included `boot.cfg `, `initrd.gz`, and `vmlinux-3.2.0-4-loongson-2f` in this tutorial for ease of use if you wish to use these.
 
-## Phase 2: PMON and the "Time Machine" Trick
+## Part 2: PMON and the "Time Machine" Trick
 
 Insert the USB into the left USB port of the Lemote Yeeloong. Power it on and tap the `Del` key to enter the `PMON>` prompt.
 
 Because Debian 7 is archived, its GPG security certificates expired years ago. If the laptop hardware clock is set to the present day, the installer will fail to download busybox and crash. We must set the clock back to 2015.
 
 ```bash
-# Set PMON clock to Jan 1st, 2015 at 12:00:00
+# set PMON clock to Jan 1st, 2015 at 12:00:00
 PMON> date 201501011200.00
 ```
 
@@ -76,7 +77,7 @@ PMON> g console=tty addr=0x80200000 debian-installer/allow_unauthenticated=true
 
 ---
 
-## Phase 3: The Debian Installer
+## Part 3: The Debian Installer
 
 Navigate the standard blue Debian installer screens.
 
@@ -110,7 +111,7 @@ The bootloader (`grub-yeeloong`) should install automatically at the end.
 
 ---
 
-## Phase 4: Post-Install File System Fix
+## Part 4: Post-Install File System Fix
 
 After the installation completes and the laptop reboots without the USB, PMON will hand off to GRUB, and the system will try to boot. 
 
